@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import getNews from '../../util/NewsProvider';
+import getNews from '../../util/provider/news/NewsAPIProvider';
 
 const newsStyle = "text-xl mx-4";
 function formatNews( news ) {
   return news.map(( newsItem, index ) => {
     return (
-      index % 2 == 0 ? <span className={newsStyle}>{ newsItem.title } - { newsItem.source.name }</span>
+      index % 2 === 0 ? <span className={newsStyle}>{ newsItem.title } - { newsItem.source.name }</span>
                      : <span className={newsStyle}>|</span>
     );
   })

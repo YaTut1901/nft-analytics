@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getNews from "../util/NewsProvider";
+import getNews from "../util/provider/news/NewsAPIProvider";
 
 function Marketplace() {
     const [news, setNews] = useState("");
