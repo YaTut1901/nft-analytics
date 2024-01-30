@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import getETHPrice from "../../util/provider/ethereum/ETHPriceProvider";
 
 function EthPrice() {
+    const [ethPrice, setEthPrice] = useState("");
+
+    useEffect(() => {
+        getETHPrice().then((data) => {
+            setEthPrice(data);
+        });
+    }, []);
+
     return (
         <div className='flex justify-between items-center gap-1 hover:cursor-pointer'>
           <svg 
@@ -21,7 +30,7 @@ function EthPrice() {
                 d="M6.05 16h-3.4a.6.6 0 0 0-.6.6V20M7 12l5 7l5-7M7 12l5-7m-5 7l5 1m0-8l5 7m-5-7v8m5-1l-5 1"/>
             </g>
           </svg>
-          <p className='text-sm'>$2,230</p>
+          <p className='text-sm'>${ ethPrice }</p>
         </div>
     );
 }

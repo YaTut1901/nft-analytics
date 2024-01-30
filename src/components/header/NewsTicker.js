@@ -5,8 +5,8 @@ const newsStyle = "text-xl mx-4";
 function formatNews( news ) {
   return news.map(( newsItem, index ) => {
     return (
-      index % 2 === 0 ? <span className={newsStyle}>{ newsItem.title } - { newsItem.source.name }</span>
-                     : <span className={newsStyle}>|</span>
+      index % 2 === 0 ? <span className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</span>
+                      : <span className={ newsStyle }>|</span>
     );
   })
 }
@@ -21,7 +21,7 @@ function NewsTicker() {
     }, []);
 
     return (
-      <div className="relative py-1 flex overflow-x-hidden cursor-default">
+      <div className="relative py-1 overflow-x-hidden cursor-default bg-white bg-opacity-40 backdrop-filter backdrop-blur-lg border-b border-b-gray-400 border-b-1 shadow-lg">
         <div className="animate-marquee whitespace-nowrap">
           { news && formatNews( news ) }
         </div>

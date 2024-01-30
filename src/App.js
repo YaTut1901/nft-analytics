@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -7,6 +7,7 @@ import NotFound from './components/NotFound';
 import Trends from './components/Trends';
 import Explore from './components/Explore';
 import Marketplace from './components/Marketplace';
+import SmallScreenErrorPage from './components/SmallScreenErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -38,10 +39,26 @@ const router = createBrowserRouter([
 ]);
 
 function Wrapper(){
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-900 via-indigo-600 to-violet-500">
       <Header />
-      <Outlet />
+      
+      { screenWidth > 1280 ? <Outlet /> 
+                           : <SmallScreenErrorPage /> }
       <Footer />
     </div>
   )

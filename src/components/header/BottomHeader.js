@@ -10,16 +10,19 @@ const groupStyle = "flex justify-between items-center";
 
 function BottomHeader() {
     return (
-      <div className='flex justify-between items-center px-6 bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg shadow-lg'>
-        <div className={groupStyle + " gap-8"}>
+      <div className='flex justify-between items-center gap-8 px-6 bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg shadow-lg'>
+        <div className={groupStyle + " gap-8 hidden xl:flex"}>
           <Logo />
           <Search />
           <Navbar />
         </div>
-        <div className={groupStyle + " gap-4"}>
+        <div className={groupStyle + " gap-4 hidden xl:flex"}>
           <GasFee />
           <EthPrice />
           <ConnectWallet />
+        </div>
+        <div className='xl:hidden w-full flex justify-center'>
+          <Logo />
         </div>
       </div>
     );
