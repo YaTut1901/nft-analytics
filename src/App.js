@@ -56,7 +56,6 @@ function Wrapper(){
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-900 via-indigo-600 to-violet-500">
       <Header />
-      
       { screenWidth > 1280 ? <Outlet /> 
                            : <SmallScreenErrorPage /> }
       <Footer />

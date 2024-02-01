@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import getNews from '../../util/provider/news/NewsAPIProvider';
+import { Link } from 'react-router-dom';
 
 const newsStyle = "text-xl mx-4";
 function formatNews( news ) {
   return news.map(( newsItem, index ) => {
     return (
-      index % 2 === 0 ? <span className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</span>
+      index % 2 === 0 ? <Link to={ newsItem.url } className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</Link>
                       : <span className={ newsStyle }>|</span>
     );
   })
@@ -21,13 +22,13 @@ function NewsTicker() {
     }, []);
 
     return (
-      <div className="relative py-1 overflow-x-hidden cursor-default bg-white bg-opacity-40 backdrop-filter backdrop-blur-lg border-b border-b-gray-400 border-b-1 shadow-lg">
-        <div className="animate-marquee whitespace-nowrap">
+      <div className="relative flex min-w-full overflow-hidden gap-4 select-none marquee--hover-pause">
+	      <div class="flex shrink-0 justify-around min-w-full gap-4 scroll">
           { news && formatNews( news ) }
-        </div>
-        <div className="absolute py-1 top-0 animate-marquee2 whitespace-nowrap">
+	      </div>
+	      <div class="flex shrink-0 justify-around min-w-full gap-4 scroll">
           { news && formatNews( news ) }
-        </div>
+	      </div>
       </div>
     );
 }
