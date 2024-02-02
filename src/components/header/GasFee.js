@@ -6,7 +6,7 @@ function GasFee() {
 
     useEffect(() => {
         getGasFee().then((data) => {
-            setGasFee(data.baseFee + data.priorityFee);
+            setGasFee(data.toString());
         });
     }, []);
 

@@ -1,13 +1,8 @@
+import ethPrice from "eth-price";
+
 async function getETHPrice() {
-    try {
-        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
-        const data = await response.json();
-        const ethPrice = data.ethereum.usd;
-        return ethPrice;
-    } catch (error) {
-        console.error('Error fetching ETH price:', error);
-        throw error;
-    }
+    const price = await ethPrice("usd");
+    return Math.round(price[0].slice(5));
 }
 
 export default getETHPrice;
