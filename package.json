@@ -10,7 +10,6 @@
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.6",
     "eth-price": "^0.1.5",
-    "gh-pages": "^6.1.1",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,7 +26,7 @@
     "eject": "react-scripts eject",
     "push": "func() { git add . && git commit -m \"$1\" && git push; } && func",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": ""
   },
   "eslintConfig": {
     "extends": [
