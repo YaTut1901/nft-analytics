@@ -27,7 +27,7 @@ function NewsTicker() {
     }, []);
 
     return (
-      <div className="relative flex min-w-full overflow-hidden gap-4 select-none marquee--hover-pause">
+      <div className="relative flex min-w-full overflow-hidden gap-4 select-none marquee--hover-pause bg-white bg-opacity-40 backdrop-filter backdrop-blur-lg shadow-lg border-b-[1px] border-gray-600">
 	      <div className="flex shrink-0 justify-around min-w-full gap-4 scroll">
           { news && formatNews( news ) }
 	      </div>
