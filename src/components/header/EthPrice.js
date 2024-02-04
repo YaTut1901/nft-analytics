@@ -19,9 +19,9 @@ function EthPrice() {
             <g 
               fill="none" 
               stroke="currentColor" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              stroke-width="1.5">
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="1.5">
               <path 
                 d="M21.168 8A10.003 10.003 0 0 0 12 2c-5.185 0-9.45 3.947-9.95 9"/>
               <path 

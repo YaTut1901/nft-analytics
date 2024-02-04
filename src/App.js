@@ -8,6 +8,8 @@ import Trends from './components/Trends';
 import Explore from './components/Explore';
 import Marketplace from './components/Marketplace';
 import SmallScreenErrorPage from './components/SmallScreenErrorPage';
+import { Web3ReactProvider } from '@web3-react/core';
+import Web3 from 'web3';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
   }
 ]);
 
+function getLibrary(provider, connector) {
+  return new Web3(provider);
+}
+
 function Wrapper(){
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -54,12 +60,14 @@ function Wrapper(){
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-900 via-indigo-600 to-violet-500">
-      <Header />
-      { screenWidth > 1280 ? <Outlet /> 
-                           : <SmallScreenErrorPage /> }
-      <Footer />
-    </div>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-900 via-indigo-600 to-violet-500">
+        <Header />
+        { screenWidth > 1280 ? <Outlet /> 
+                             : <SmallScreenErrorPage /> }
+        <Footer />
+      </div> 
+    </Web3ReactProvider>
   )
 };
 

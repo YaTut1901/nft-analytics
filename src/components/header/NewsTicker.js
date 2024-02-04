@@ -6,8 +6,13 @@ const newsStyle = "text-xl mx-4";
 function formatNews( news ) {
   return news.map(( newsItem, index ) => {
     return (
-      index % 2 === 0 ? <Link to={ newsItem.url } className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</Link>
-                      : <span className={ newsStyle }>|</span>
+      index % 2 === 0 ? <Link 
+                          to={ newsItem.url } 
+                          key={ index }
+                          className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</Link>
+                      : <span 
+                          key={ index }
+                          className={ newsStyle }>|</span>
     );
   })
 }
@@ -23,10 +28,10 @@ function NewsTicker() {
 
     return (
       <div className="relative flex min-w-full overflow-hidden gap-4 select-none marquee--hover-pause">
-	      <div class="flex shrink-0 justify-around min-w-full gap-4 scroll">
+	      <div className="flex shrink-0 justify-around min-w-full gap-4 scroll">
           { news && formatNews( news ) }
 	      </div>
-	      <div class="flex shrink-0 justify-around min-w-full gap-4 scroll">
+	      <div className="flex shrink-0 justify-around min-w-full gap-4 scroll">
           { news && formatNews( news ) }
 	      </div>
       </div>
