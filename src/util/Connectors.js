@@ -5,6 +5,8 @@ const Injected = new InjectedConnector({
   forceApprovalPrompt: true
 });
 
-export const connectors = {
+const connectors = [
   Injected
-};
+];
+
+export default connectors;

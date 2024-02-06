@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+const apiKey = process.env.REACT_APP_NEWS_API_KEY || 'c0ca553c2392479aa130befc0328e45c';
 const query = 'crypto';
 const sortBy = 'relevancy';
 const pageSize = 20;
