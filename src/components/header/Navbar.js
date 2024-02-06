@@ -11,17 +11,17 @@ function Navbar() {
     <nav>
       <ul className="flex justify-between items-center gap-5">
         <li>
-          <NavLink 
-            to="/trends" 
+          <NavLink
+            to="/trends"
             className={({ isActive }) =>
-              isActive ? activeStyle  : inactiveStyle
+              isActive ? activeStyle : inactiveStyle
             }>
             Trends
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/explore" 
+          <NavLink
+            to="/explore"
             className={({ isActive }) =>
               isActive ? activeStyle : inactiveStyle
             }>
@@ -29,8 +29,8 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/marketplace" 
+          <NavLink
+            to="/marketplace"
             className={({ isActive }) =>
               isActive ? activeStyle : inactiveStyle
             }>

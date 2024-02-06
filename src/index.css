@@ -1,6 +1,7 @@
 @import './styles/tailwind.css';
 
-body, body > #root {
+body,
+body>#root {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -20,6 +21,7 @@ code {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-100% - 1rem));
   }

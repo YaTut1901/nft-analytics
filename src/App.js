@@ -15,29 +15,29 @@ import Modal from './components/Modal';
 
 const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <Wrapper />,
-    children:[
-         {
-             path: "/",
-             element: <Homepage />
-         },
-         {
-              path: "/trends",
-              element: <Trends />
-          },
-          {
-              path: "/explore",
-              element: <Explore />
-          },
-          {
-            path: "/marketplace",
-            element: <Marketplace />
-          },
-          {
-              path: "*",
-              element: <NotFound />
-          },
+    children: [
+      {
+        path: "/",
+        element: <Homepage />
+      },
+      {
+        path: "/trends",
+        element: <Trends />
+      },
+      {
+        path: "/explore",
+        element: <Explore />
+      },
+      {
+        path: "/marketplace",
+        element: <Marketplace />
+      },
+      {
+        path: "*",
+        element: <NotFound />
+      },
     ]
   }
 ]);
@@ -76,20 +76,22 @@ function Wrapper() {
   }, [isModalOpen]);
 
   return (
-    <Web3ReactProvider getLibrary={ getLibrary }>
-      <ModalContext.Provider value={{ isModalOpen, 
-                                      handleModalOpen, 
-                                      handleModalClose, 
-                                      modalContent, 
-                                      setModalContent }}>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <ModalContext.Provider value={{
+        isModalOpen,
+        handleModalOpen,
+        handleModalClose,
+        modalContent,
+        setModalContent
+      }}>
         <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-900 via-indigo-600 to-violet-500">
           <Header />
-          { screenWidth > 1280 ? <Outlet /> 
-                               : <SmallScreenErrorPage /> }
+          {screenWidth > 1280 ? <Outlet />
+            : <SmallScreenErrorPage />}
           <Footer />
-          { isModalOpen && modalContent 
-                        && <Modal /> }
-        </div> 
+          {isModalOpen && modalContent
+            && <Modal />}
+        </div>
       </ModalContext.Provider>
     </Web3ReactProvider>
   )
