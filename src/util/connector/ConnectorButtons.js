@@ -11,14 +11,13 @@ const labelStyle = "transition-all duration-300";
 export function MetamaskButton() {
     const { activate } = useWeb3React();
     const { handleModalClose } = useContext(ModalContext);
-    const pxToTranslateMetaMask = "100";
 
     function processMetamask() {
         if (window.ethereum && window.ethereum.isMetaMask) {
             document.getElementById('metamaskButtonIcon')
-                .classList.add(`translate-x-[-${pxToTranslateMetaMask}px]`, 'animate-pulse');
+                .classList.add(`translate-x-[-100px]`, 'animate-pulse');
             document.getElementById('metamaskButtonLabel')
-                .classList.add(`translate-x-[${pxToTranslateMetaMask}px]`);
+                .classList.add(`translate-x-[100px]`);
             activate(connectors.MetaMask).then(() => {
                 localStorage.setItem('wallet', 'MetaMask');
                 handleModalClose();
@@ -35,9 +34,9 @@ export function MetamaskButton() {
             onClick={() => processMetamask()}
         >
             <img src={metamask}
-                className={iconStyle + ` group-hover:translate-x-[-${pxToTranslateMetaMask}px]`}
+                className={iconStyle + ` group-hover:translate-x-[-100px]`}
                 id='metamaskButtonIcon' />
-            <div className={labelStyle + ` group-hover:translate-x-[${pxToTranslateMetaMask}px]`}
+            <div className={labelStyle + ` group-hover:translate-x-[100px]`}
                 id='metamaskButtonLabel'>
                 MetaMask
             </div>
@@ -48,13 +47,12 @@ export function MetamaskButton() {
 export function WalletConnectButton() {
     const { activate } = useWeb3React();
     const { handleModalClose } = useContext(ModalContext);
-    const pxToTranslateWalletConnect = "75";
 
     function processWalletConnect() {
         document.getElementById('walletConnectButtonIcon')
-            .classList.add(`translate-x-[-${pxToTranslateWalletConnect}px]`, 'animate-pulse');
+            .classList.add(`translate-x-[-75px]`, 'animate-pulse');
         document.getElementById('walletConnectButtonLabel')
-            .classList.add(`translate-x-[${pxToTranslateWalletConnect}px]`);
+            .classList.add(`translate-x-[75px]`);
         activate(connectors.WalletConnect).then(() => {
             localStorage.setItem('wallet', 'WalletConnect');
             handleModalClose();
@@ -68,9 +66,9 @@ export function WalletConnectButton() {
             onClick={() => processWalletConnect()}
         >
             <img src={walletConnect}
-                className={iconStyle + ` group-hover:translate-x-[-${pxToTranslateWalletConnect}px]`}
+                className={iconStyle + ` group-hover:translate-x-[-75px]`}
                 id='walletConnectButtonIcon' />
-            <div className={labelStyle + ` group-hover:translate-x-[${pxToTranslateWalletConnect}px]`}
+            <div className={labelStyle + ` group-hover:translate-x-[75px]`}
                 id='walletConnectButtonLabel'>
                 WalletConnect
             </div>
@@ -81,13 +79,12 @@ export function WalletConnectButton() {
 export function CoinbaseButton() {
     const { activate } = useWeb3React();
     const { handleModalClose } = useContext(ModalContext);
-    const pxToTranslateCoinbase = "100";
 
     function processCoinbase() {
         document.getElementById('coinbaseButtonIcon')
-            .classList.add(`translate-x-[-${pxToTranslateCoinbase}px]`, 'animate-pulse');
+            .classList.add(`translate-x-[-100px]`, 'animate-pulse');
         document.getElementById('coinbaseButtonLabel')
-            .classList.add(`translate-x-[${pxToTranslateCoinbase}px]`);
+            .classList.add(`translate-x-[100px]`);
         activate(connectors.Coinbase).then(() => {
             localStorage.setItem('wallet', 'Coinbase');
             handleModalClose();
@@ -101,9 +98,9 @@ export function CoinbaseButton() {
             onClick={() => processCoinbase()}
         >
             <img src={coinbase}
-                className={iconStyle + ` group-hover:translate-x-[-${pxToTranslateCoinbase}px]`}
+                className={iconStyle + ` group-hover:translate-x-[-100px]`}
                 id='coinbaseButtonIcon' />
-            <div className={labelStyle + ` group-hover:translate-x-[${pxToTranslateCoinbase}px]`}
+            <div className={labelStyle + ` group-hover:translate-x-[100px]`}
                 id='coinbaseButtonLabel'>
                 Coinbase
             </div>
