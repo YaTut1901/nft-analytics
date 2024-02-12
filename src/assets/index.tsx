@@ -1,5 +1,9 @@
-import coinbase from './coinbase.svg';
-import metamask from './metamask.svg';
-import walletConnect from './walletConnect.svg';
+import Coinbase from './coinbase.svg';
+import MetaMask from './metamask.svg';
+import WalletConnect from './walletConnect.svg';
 
-export { coinbase, metamask, walletConnect };
+export const connectors: { [name: string]: string } = { 
+    MetaMask: MetaMask,
+    Coinbase: Coinbase,
+    WalletConnect: WalletConnect
+};
