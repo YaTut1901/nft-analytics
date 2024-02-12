@@ -1,7 +1,7 @@
 import Web3 from "web3";
 
-const infuraApiKey = process.env.REACT_APP_INFURA_API_KEY;
-const web3 = new Web3(`https://mainnet.infura.io/v3/${infuraApiKey}`);
+const infuraApiKey: string | undefined = process.env.REACT_APP_INFURA_API_KEY;
+const web3: Web3 = new Web3(`https://mainnet.infura.io/v3/${infuraApiKey}`);
 
 async function getGasFee(): Promise<number> {
     try {

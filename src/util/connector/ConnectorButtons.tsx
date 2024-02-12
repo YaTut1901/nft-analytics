@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { metamask as metaMaskConnector } from './Connectors';
-import { metamask } from '../../assets';
+import { connectorsMap as connectors } from '.';
+import { metamask, coinbase } from '../../assets';
 import { ModalContext } from '../context/ModalContext';
 
 const buttonStyle = "group overflow-hidden w-full flex justify-center px-6 items-center font-bold text-xl hover:bg-slate-200 hover:shadow-none bg-slate-100 border-[1px] rounded-lg shadow-lg p-2 gap-4";
@@ -10,14 +10,13 @@ const labelStyle = "transition-all duration-300";
 export function MetamaskButton(): React.JSX.Element {
     const { handleModalClose } = useContext(ModalContext);
 
-    function processMetamask() {
-        if (window.ethereum && window.ethereum.isMetaMask) {
+    async function processMetamask() {
+        if (window.ethereum) {
             document.getElementById('metamaskButtonIcon')?.classList.add(`translate-x-[-100px]`, 'animate-pulse');
             document.getElementById('metamaskButtonLabel')?.classList.add(`translate-x-[100px]`);
-            metaMaskConnector.activate().then(() => {
-                localStorage.setItem('wallet', 'metamask');
-                handleModalClose();
-            });
+            await connectors["metamask"].activate()
+            localStorage.setItem('wallet', 'metamask');
+            handleModalClose();
         } else {
             window.location.replace("https://metamask.io/download");
         }
@@ -35,6 +34,34 @@ export function MetamaskButton(): React.JSX.Element {
             <div className={labelStyle + ` group-hover:translate-x-[100px]`}
                 id='metamaskButtonLabel'>
                 MetaMask
+            </div>
+        </button>
+    );
+};
+
+export function CoinbaseWalletButton(): React.JSX.Element {
+    const { handleModalClose } = useContext(ModalContext);
+
+    async function processCoinbaseWallet() {
+        document.getElementById('coinbaseWalletButtonIcon')?.classList.add(`translate-x-[-100px]`, 'animate-pulse');
+        document.getElementById('coinbaseWalletButtonLabel')?.classList.add(`translate-x-[100px]`);
+        await connectors["coinbase"].activate()
+        localStorage.setItem('wallet', 'coinbase');
+        handleModalClose();
+    }
+
+    return ( 
+        <button
+            className={buttonStyle}
+            id='coinbaseWalletButton'
+            onClick={() => processCoinbaseWallet()}
+        >
+            <img src={coinbase}
+                className={iconStyle + ` group-hover:translate-x-[-100px]`}
+                id='coinbaseWalletButtonIcon' />
+            <div className={labelStyle + ` group-hover:translate-x-[100px]`}
+                id='coinbaseWalletButtonLabel'>
+                Coinbase
             </div>
         </button>
     );

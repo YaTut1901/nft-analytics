@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useWeb3React } from '@web3-react/core';
 import { ModalContext } from "../../util/context/ModalContext";
-import { MetamaskButton } from "../../util/connector/ConnectorButtons";
+import { MetamaskButton, CoinbaseWalletButton } from "../../util/connector/ConnectorButtons";
 
 function ConnectWallet(): React.JSX.Element {
   const { isActive, connector } = useWeb3React();
@@ -13,6 +13,7 @@ function ConnectWallet(): React.JSX.Element {
       <div className="flex flex-col gap-6">
         <h1 className="w-full flex justify-center font-extrabold text-2xl">Connect Your Wallet</h1>
         <MetamaskButton />
+        <CoinbaseWalletButton />
       </div>
     );
   }

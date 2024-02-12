@@ -10,6 +10,7 @@ function formatNews(news: News[]): React.JSX.Element[] {
       index % 2 === 0 ? <Link
         to={ newsItem.url }
         key={ index }
+        target='_blank'
         className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</Link>
         : <span
           key={ index }
