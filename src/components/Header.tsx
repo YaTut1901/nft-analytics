@@ -13,7 +13,7 @@ function Header(): React.JSX.Element {
   }, []);
 
   return (
-    <div className='flex flex-col sticky top-0'>
+    <div className='flex flex-col sticky top-0 z-50'>
       <div className='hidden xl:flex'>
         <NewsTicker />
       </div>

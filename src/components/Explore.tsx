@@ -6,9 +6,8 @@ function Explore(): React.JSX.Element {
   const query: string | null = searchParams.get('query');
 
   return (
-    <div>
-      <h2>Explore Component</h2>
-      <p>Parameter from URL: {query}</p>
+    <div className="p-6">
+      This is Explore
     </div>
   );
 }

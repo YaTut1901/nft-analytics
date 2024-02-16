@@ -32,7 +32,7 @@ function Search(): React.JSX.Element {
         <input type="search"
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleSearch}
-          className="block w-80 p-1.5 ps-10 text-sm rounded-full outline-none bg-indigo-900 bg-opacity-40 border-gray-900 border-opacity-10 border-2 focus:border-opacity-40 transition duration-300 placeholder:text-white placeholder:opacity-30"
+          className="block w-80 p-1.5 ps-10 text-sm rounded-full outline-none bg-indigo-900 bg-opacity-40 border-gray-900 border-opacity-10 border-2 focus:border-opacity-40 transition duration-300 placeholder:text-white placeholder:opacity-80"
           placeholder="Search for Collections, NFTs and more..."
           required>
         </input>

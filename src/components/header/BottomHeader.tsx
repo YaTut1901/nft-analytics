@@ -11,7 +11,7 @@ const groupStyle: string = "flex justify-between items-center";
 
 function BottomHeader(): React.JSX.Element {
   return (
-    <div className='flex justify-between items-center gap-8 px-6 bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg shadow-lg'>
+    <div className='flex justify-between items-center gap-8 px-6 bg-white bg-opacity-40 backdrop-filter backdrop-blur-lg shadow-lg'>
       <div className={groupStyle + " gap-8 hidden xl:flex"}>
         <Logo />
         <Search />
