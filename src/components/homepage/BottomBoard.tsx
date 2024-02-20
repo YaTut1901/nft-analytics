@@ -1,5 +1,4 @@
 import React from "react";
-import { schema } from "../../util/provider/charts/test/Provider";
 import { Line } from "react-chartjs-2";
 
 function BottomBoard(): React.JSX.Element {
@@ -12,15 +11,15 @@ function BottomBoard(): React.JSX.Element {
          style={style}>
         <div className="flex-grow p-4 flex-shrink-0 flex-basis-0 w-1/3"
              style={style}>
-          <Line data={schema} options={{ maintainAspectRatio: false }} />
+          {/* <Line data={schema} options={{ maintainAspectRatio: false }} /> */}
         </div>
         <div className="flex-grow p-4 flex-shrink-0 flex-basis-0 w-1/3"
              style={style}>
-          <Line data={schema} options={{ maintainAspectRatio: false }} />
+          {/* <Line data={schema} options={{ maintainAspectRatio: false }} /> */}
         </div>
         <div className="flex-grow p-4 flex-shrink-0 flex-basis-0 w-1/3"
              style={style}>
-          <Line data={schema} options={{ maintainAspectRatio: false }} />
+          {/* <Line data={schema} options={{ maintainAspectRatio: false }} /> */}
         </div>
     </div>
   );

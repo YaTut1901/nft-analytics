@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useWeb3React } from '@web3-react/core';
 import { ModalContext } from "../../util/context/ModalContext";
-import ConnectorButton from "../../util/connector/ConnectorButton";
+import ConnectorButton from "./ConnectorButton";
 import SupportedConnectors from "../../util/connector/supportedConnectors";
 
 function ConnectWallet(): React.JSX.Element {

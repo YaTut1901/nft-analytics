@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from 'react';
-import { connectorsMap as connectors } from '.';
+import { connectorsMap as connectors } from '../../util/connector';
 import { connectors as connectorsLogo } from '../../assets';
-import { ModalContext } from '../context/ModalContext';
-import SupportedConnectors from './supportedConnectors';
+import { ModalContext } from '../../util/context/ModalContext';
+import SupportedConnectors from '../../util/connector/supportedConnectors';
 
 const buttonClasses = "overflow-hidden w-full flex justify-center px-6 items-center font-bold text-xl hover:bg-slate-200 hover:shadow-none bg-slate-100 border-[1px] rounded-lg shadow-lg p-2 gap-4";
 const transitionProperties = "all 300ms";
