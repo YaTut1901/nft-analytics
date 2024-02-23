@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import getGasFee from "../../util/provider/ethereum/GasFeeProvider";
+import GasFeeProvider from "../../util/provider/ethereum/GasFeeProvider";
+import Provider from "../../util/provider/Provider";
+import { GasFeeError } from "../../util/provider/types";
 
 function GasFee(): React.JSX.Element {
   const [gasFee, setGasFee] = useState<number>();
+  const gasFeeProvider: Provider<number, GasFeeError> = new GasFeeProvider();
 
   useEffect(() => {
-    getGasFee().then((data) => {
+    gasFeeProvider.provide().then((data) => {
       setGasFee(data);
     });
   }, []);

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import getNews, { News } from '../../util/provider/news/NewsAPIProvider';
 import { Link } from 'react-router-dom';
+import NewsProvider from '../../util/provider/news/NewsProvider';
+import { News, NewsApiError } from '../../util/provider/types';
+import Provider from '../../util/provider/Provider';
 
 const newsStyle: string = "text-xl mx-4";
 
@@ -21,9 +23,10 @@ function formatNews(news: News[]): React.JSX.Element[] {
 
 function NewsTicker(): React.JSX.Element {
   const [news, setNews] = useState(new Array());
+  const provider: Provider<News[], NewsApiError> = new NewsProvider();
 
   useEffect(() => {
-    getNews().then((data) => {
+    provider.provide().then((data) => {
       setNews(data);
     });
   }, []);

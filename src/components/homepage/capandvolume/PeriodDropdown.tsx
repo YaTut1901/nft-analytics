@@ -1,5 +1,6 @@
 import React from "react";
-import { Period, Periods } from "../../../util/provider/charts/marketCapVolume/supportedValues";
+import { Periods } from "../../../util/provider/charts/marketCapVolume/supportedValues";
+import { Period } from "../../../util/provider/types";
 
 function PeriodDropdown(props: { setPeriod: React.Dispatch<React.SetStateAction<Period>> }): React.JSX.Element {
     return (

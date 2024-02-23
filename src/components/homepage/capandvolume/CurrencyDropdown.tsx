@@ -1,5 +1,6 @@
 import React from "react";
-import { Currency, Currencies } from "../../../util/provider/charts/marketCapVolume/supportedValues";
+import { Currencies } from "../../../util/provider/charts/marketCapVolume/supportedValues";
+import { Currency } from "../../../util/provider/types";
 
 function CurrencyDropdown( props: { setCurrency: React.Dispatch<React.SetStateAction<Currency>> } ): React.JSX.Element {
     return (
