@@ -1,6 +1,9 @@
 import { ChartData, ChartOptions } from 'chart.js';
 import { Currency, Period } from '../provider/types';
 import { ChartEvent } from 'chart.js/dist/core/core.plugins';
+import { Chart } from 'chart.js/dist';
+import { ActiveElement } from 'chart.js/dist/plugins/plugin.tooltip';
+import { act } from 'react-dom/test-utils';
 
 export function getData(timestamp: number[],
     period: Period,
@@ -64,7 +67,6 @@ export function getOptions(currency: Currency,
         maintainAspectRatio: false,
         plugins: {
             tooltip: {
-                mode: 'point',
                 callbacks: {
                     label: function (context) {
                         let label = context.dataset.label || '';
@@ -82,7 +84,15 @@ export function getOptions(currency: Currency,
         animation: {
             duration: 2000
         },
+        onHover: (event: ChartEvent, active: ActiveElement[], chart) => {
+            if (active.length > 0) {
+                chart.canvas.style.cursor = "pointer";
+            } else {
+                chart.canvas.style.cursor = chart.canvas.style.cursor === "pointer" ? "" : chart.canvas.style.cursor;
+            }
+        },
         interaction: {
+            mode: "point",
             intersect: false,
         },
         scales: {

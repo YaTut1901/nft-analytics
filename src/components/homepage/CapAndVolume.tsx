@@ -29,7 +29,8 @@ function CapAndVolume(): React.JSX.Element {
     
   return (
     <div className="flex flex-col gap-3 h-full">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center"
+             onClick={e => e.stopPropagation()}>
             <div className="text-2xl font-bold text-slate-900">
                 Market Cap & Volume
             </div>
