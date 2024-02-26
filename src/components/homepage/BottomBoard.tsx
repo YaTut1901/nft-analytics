@@ -1,9 +1,8 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
 
 function BottomBoard(): React.JSX.Element {
   const style = {
-    height: "35vh",
+    minHeight: "35vh",
   };
 
   return (

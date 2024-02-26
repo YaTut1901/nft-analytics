@@ -8,14 +8,14 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, 
 
 function Homepage(): React.JSX.Element {
     return (
-        <div>
-        <div className="flex flex-col gap-6 justify-between max-w-full p-6">
-            <div className="flex flex-col gap-6">
+        <div className='flex flex-col justify-between gap-4'>
+          <div className="max-w-full p-6 pb-0">
+            <div className="flex flex-col gap-4">
               <UpBoard />
               <MidBoard />
             </div>
-        </div>
-        <BottomBoard />
+          </div>
+          <BottomBoard />
         </div>
     );
 }

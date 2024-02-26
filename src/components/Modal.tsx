@@ -11,12 +11,7 @@ function Modal(): React.JSX.Element {
       style={{ marginTop: `${scrollY}px` }}
       onClick={handleModalClose}
     >
-      <div
-        className="bg-white p-8 rounded-lg w-1/3 shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {modalContent}
-      </div>
+      {modalContent}
     </div>
   );
 };

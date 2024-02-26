@@ -11,7 +11,8 @@ function ConnectWallet(): React.JSX.Element {
   function handleConnect() {
     handleModalOpen();
     setModalContent(
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 bg-white p-8 rounded-lg w-1/3 shadow-2xl"
+           onClick={(e) => e.stopPropagation()}>
         <h1 className="w-full flex justify-center font-extrabold text-2xl">Connect Your Wallet</h1>
         <ConnectorButton name={SupportedConnectors.MetaMask} />
         <ConnectorButton name={SupportedConnectors.Coinbase} />

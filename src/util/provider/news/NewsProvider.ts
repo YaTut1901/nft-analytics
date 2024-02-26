@@ -19,7 +19,7 @@ class NewsProvider extends Provider<News[], NewsApiError> {
     async get(): Promise<News[]> {
         return this.axios.get(this.url).then((response) => {
             console.log("Fetching news from News API... "); 
-            console.log(`Response from ${Date.now()}: ${JSON.stringify(response.data)}`)
+            console.log(`Response from ${Date.now().toLocaleString()}: ${JSON.stringify(response.data)}`)
             return response.data.articles as News[];
         });
     }

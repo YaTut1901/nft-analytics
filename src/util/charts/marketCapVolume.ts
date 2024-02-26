@@ -1,5 +1,6 @@
 import { ChartData, ChartOptions } from 'chart.js';
 import { Currency, Period } from '../provider/types';
+import { ChartEvent } from 'chart.js/dist/core/core.plugins';
 
 export function getData(timestamp: number[],
     period: Period,
@@ -60,6 +61,7 @@ export function getOptions(currency: Currency,
     period: Period): ChartOptions<'line'> {
     return ({
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             tooltip: {
                 mode: 'point',
