@@ -1,8 +1,10 @@
 import Provider from "../Provider";
 import Web3 from "web3";
 import { GasFeeError } from "../types";
+import { AxiosError } from "axios";
+import hash from "object-hash";
 
-class GasFeeProvider extends Provider<number, GasFeeError> {
+class GasFeeProvider extends Provider<number> {
     private web3: Web3;
 
     constructor() {
@@ -17,16 +19,19 @@ class GasFeeProvider extends Provider<number, GasFeeError> {
     }
 
     getHashForCashing(): string {
-        return "GasFee";
+        return hash("GasFee");
     }
 
-    shouldRetry(error: GasFeeError): boolean {
-        return true;
-    }
+    onError(error: Error | AxiosError): Error {
+        if (error instanceof AxiosError) {
+            const data = error.response?.data;
+            if ("message" in data) {
+                const gasFeeError = data as GasFeeError;
+                return new Error(`Gas fee error: ${gasFeeError.message}`);
+            };
+        };
 
-    onError(error: GasFeeError): Error {
-        console.error(`Gas fee API error: ${error.message}`);
-        return new Error(`Gas fee API error: ${error.message}`);
+        return error;
     }
 }
 

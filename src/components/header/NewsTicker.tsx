@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NewsProvider from '../../util/provider/news/NewsProvider';
-import { News, NewsApiError } from '../../util/provider/types';
+import { News } from '../../util/provider/types';
 import Provider from '../../util/provider/Provider';
 
 const newsStyle: string = "text-xl mx-4";
@@ -9,21 +9,23 @@ const newsStyle: string = "text-xl mx-4";
 function formatNews(news: News[]): React.JSX.Element[] {
   return news.map((newsItem: News, index: number) => {
     return (
-      index % 2 === 0 ? <Link
-        to={ newsItem.url }
-        key={ index }
-        target='_blank'
-        className={ newsStyle }>{ newsItem.title } - { newsItem.source.name }</Link>
-        : <span
-          key={ index }
-          className={ newsStyle }>|</span>
+      index % 2 === 0 ? <Link to={ newsItem.url }
+                              key={ index }
+                              target='_blank'
+                              className={ newsStyle }>
+                            { newsItem.title } - { newsItem.source.name }
+                        </Link>
+                      : <span key={ index }
+                              className={ newsStyle }>
+                            |
+                        </span>
     );
   })
 }
 
 function NewsTicker(): React.JSX.Element {
   const [news, setNews] = useState(new Array());
-  const provider: Provider<News[], NewsApiError> = new NewsProvider();
+  const provider: Provider<News[]> = new NewsProvider();
 
   useEffect(() => {
     provider.provide().then((data) => {

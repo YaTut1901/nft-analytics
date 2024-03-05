@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TokenPriceProvider from "../../util/provider/ethereum/TokenPriceProvider";
 import Provider from "../../util/provider/Provider";
-import { Rates, TokenPriceError } from "../../util/provider/types";
+import { Rates } from "../../util/provider/types";
 
 function EthPrice(): React.JSX.Element {
   const [ethPrice, setEthPrice] = useState<number>();
-  const provider: Provider<Rates, TokenPriceError> = new TokenPriceProvider("ETH", "USD");
+  const provider: Provider<Rates> = new TokenPriceProvider("ETH", "USD");
 
   useEffect(() => {
     provider.provide().then((data) => {

@@ -1,7 +1,7 @@
-import axiosClient, { AxiosStatic } from 'axios';
+import axiosClient, { AxiosError, AxiosStatic } from 'axios';
 import { CachedItem } from './types';
 
-abstract class Provider<T, E> {
+abstract class Provider<T> {
     protected cacheInterval: number;
     protected url: string;
     protected axios: AxiosStatic;
@@ -40,9 +40,7 @@ abstract class Provider<T, E> {
 
     protected abstract get(): Promise<T>;
 
-    protected abstract shouldRetry(error: E): boolean;
-
-    protected abstract onError(error: E): Error;
+    protected abstract onError(error: Error | AxiosError): Error;
 
     protected abstract getHashForCashing(): string;
 
@@ -55,7 +53,7 @@ abstract class Provider<T, E> {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        return this.get().catch(async (error: E) => {
+        return this.get().catch(async (error: Error | AxiosError) => {
             if (this.shouldRetry(error) && retries < this.maxRetries) {
                 retries++;
                 await delay(this.retryDelay * Math.pow(2, retries));
@@ -76,6 +74,11 @@ abstract class Provider<T, E> {
             this.storage.setItem(hash, JSON.stringify(cachedItem));
             return response;
         });
+    }
+
+    private shouldRetry(error: Error | AxiosError): boolean {
+        const retriableCodes = [408, 429, 500, 502, 503, 504];
+        return this.axios.isAxiosError(error) && (retriableCodes.includes(error.response?.status as number) || !error.response?.status);
     }
 }
 

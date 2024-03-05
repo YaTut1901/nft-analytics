@@ -1,8 +1,9 @@
+import { AxiosError } from "axios";
 import Provider from "../Provider";
 import { News, NewsApiError } from "../types";
 import hash from "object-hash";
 
-class NewsProvider extends Provider<News[], NewsApiError> {
+class NewsProvider extends Provider<News[]> {
     constructor() {
         const url: string = 'https://newsapi.org/v2/everything?' +
             `pageSize=20&` +
@@ -19,7 +20,7 @@ class NewsProvider extends Provider<News[], NewsApiError> {
     async get(): Promise<News[]> {
         return this.axios.get(this.url).then((response) => {
             console.log("Fetching news from News API... "); 
-            console.log(`Response from ${Date.now().toLocaleString()}: ${JSON.stringify(response.data)}`)
+            console.log(`Response from ${new Date(Date.now()).toISOString()}: ${JSON.stringify(response.data)}`)
             return response.data.articles as News[];
         });
     }
@@ -28,13 +29,16 @@ class NewsProvider extends Provider<News[], NewsApiError> {
         return hash("News");
     }
 
-    shouldRetry(error: NewsApiError): boolean {
-        return false;
-    }
+    onError(error: Error | AxiosError): Error {
+        if (error instanceof AxiosError) {
+            const data = error.response?.data;
+            if ("code" in data && "message" in data) {
+                const newsApiError = data as NewsApiError;
+                return new Error(`News API error: ${newsApiError.code}, ${newsApiError.message}`);
+            };
+        };
 
-    onError(error: NewsApiError): Error {
-        console.error(`News API error: ${error.code}, ${error.message}`);
-        return new Error(`News API error: ${error.code}, ${error.message}`);
+        return error;
     }
 }
 

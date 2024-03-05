@@ -79,3 +79,37 @@ type MarketErrorDetail = {
     type: string;
     loc: (string | number)[];
 }
+
+type TopCollectionsCollection = {
+    rank: number;
+    collection_title: string,
+    collection_image: string,
+    floor_price_usd: string,
+    floor_price_24hr_percent_change: string,
+    collection_address: string,
+    floor_price: string,
+    floor_price_usd_24hr_percent_change: string,
+}
+
+export type TopCollectionsByCapCollection = TopCollectionsCollection & {
+    market_cap_usd: string,
+    market_cap_24hr_percent_change: string,
+    volume_usd: string,
+    volume_24hr_percent_change: string,
+}
+
+export type TopCollectionsByVolumeCollection = TopCollectionsCollection & {
+    volume_usd: string,
+    volume_24hr_percent_change: string,
+    average_price_usd: string,
+    average_price: string,
+    floor_price_7d_percent_change: string,
+    floor_price_usd_7d_percent_change: string,
+    floor_price_30d_percent_change: string,
+    floor_price_usd_30d_percent_change: string,
+}
+
+export type TopCollectionsByCap = Array<TopCollectionsByCapCollection>;
+export type TopCollectionsByVolume = Array<TopCollectionsByVolumeCollection>;
+
+export type TopCollections = Array<TopCollectionsByCapCollection> | Array<TopCollectionsByVolumeCollection>;

@@ -2,7 +2,7 @@ import React from "react";
 
 function BottomBoard(): React.JSX.Element {
   const style = {
-    minHeight: "35vh",
+    height: "35vh",
   };
 
   return (

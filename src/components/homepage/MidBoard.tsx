@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 function MidBoard(): React.JSX.Element {
   const style = {
-    minHeight: "25vh",
+    height: "25vh",
     width: "calc(33.3% - 2rem)"
   };
 

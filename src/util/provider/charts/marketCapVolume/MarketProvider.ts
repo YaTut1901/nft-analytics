@@ -2,8 +2,9 @@ import Provider from "../../Provider";
 import { MarketError, RawMarketData } from "../../types";
 import { Period, Currency, CapVolumeResponse } from "../../types";
 import hash from "object-hash";
+import { AxiosError } from "axios";
 
-class MarketProvider extends Provider<RawMarketData, MarketError> {
+class MarketProvider extends Provider<RawMarketData> {
     private period: Period;
     private currency: Currency;
 
@@ -39,13 +40,17 @@ class MarketProvider extends Provider<RawMarketData, MarketError> {
         return hash({ url: this.url.split("?")[0], period: this.period, currency: this.currency });
     }
 
-    shouldRetry(error: MarketError): boolean {
-        return error.code === 422;
-    }
+    onError(error: Error | AxiosError): Error {
+        if (error instanceof AxiosError) {
+            const data = error.response?.data;
+            if ("code" in data && "detail" in data) {
+                const marketError = data as MarketError;
+                console.error(`Market API error: ${marketError.code}, ${marketError.detail[0].msg}`);
+                return new Error(`Market API error: ${marketError.code}, ${marketError.detail[0].msg}`);
+            };
+        };
 
-    onError(error: MarketError): Error {
-        console.error(`Market API error: ${error.code}, ${error.detail[0].msg}`);
-        return new Error(`Market API error: ${error.code}, ${error.detail[0].msg}`);
+        return error;
     }
 }
 

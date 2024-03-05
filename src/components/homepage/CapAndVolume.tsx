@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getData, getEmptyData } from "../../util/charts/marketCapVolume";
 import Provider from "../../util/provider/Provider";
 import MarketProvider from "../../util/provider/charts/marketCapVolume/MarketProvider";
-import { MarketError, RawMarketData } from "../../util/provider/types";
+import { RawMarketData } from "../../util/provider/types";
 import { getOptions } from "../../util/charts/marketCapVolume";
 import { Currencies, Periods } from "../../util/provider/charts/marketCapVolume/supportedValues";
 import { Line } from "react-chartjs-2";
@@ -17,8 +17,8 @@ function CapAndVolume(): React.JSX.Element {
   const [data, setData] = useState(getEmptyData(period));
 
   useEffect(() => {
-    const marketCapProvider: Provider<RawMarketData, MarketError> = new MarketProvider(period, currency, "marketcap");
-    const marketVolumeProvider: Provider<RawMarketData, MarketError> = new MarketProvider(period, currency, "volume");
+    const marketCapProvider: Provider<RawMarketData> = new MarketProvider(period, currency, "marketcap");
+    const marketVolumeProvider: Provider<RawMarketData> = new MarketProvider(period, currency, "volume");
 
     Promise.all([marketCapProvider.provide(), marketVolumeProvider.provide()]).then(([cap, volume]) => {
         const chartData = getData(cap.timestamp, period, cap.data, volume.data);
@@ -39,7 +39,7 @@ function CapAndVolume(): React.JSX.Element {
                 <PeriodDropdown setPeriod={ setPeriod }/>
             </div>
         </div>
-        <div className="relative h-full">
+        <div className="relative h-full cursor-zoom-in">
           <ChartLoading loading={ loading } />
           <Line data={ data } options={ getOptions(currency, period) } />
         </div>

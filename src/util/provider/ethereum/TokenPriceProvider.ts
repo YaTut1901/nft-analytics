@@ -1,7 +1,9 @@
 import Provider from "../Provider";
 import { Rates, TokenPriceError } from "../types";
+import { AxiosError } from "axios";
+import hash from "object-hash"
 
-class TokenPriceProvider extends Provider<Rates, TokenPriceError>{
+class TokenPriceProvider extends Provider<Rates>{
     constructor(from: string, to: string | string[]) {
         super(`https://min-api.cryptocompare.com/data/price?fsym=${from}&tsyms=${to.concat(',')}`, 300000);
     }
@@ -17,16 +19,19 @@ class TokenPriceProvider extends Provider<Rates, TokenPriceError>{
     }
 
     getHashForCashing(): string {
-        return this.url;
+        return hash(this.url);
     }
 
-    shouldRetry(error: TokenPriceError): boolean {
-        return true;
-    }
+    onError(error: Error | AxiosError): Error {
+        if (error instanceof AxiosError) {
+            const data = error.response?.data;
+            if ("Message" in data) {
+                const tokenPriceError = data as TokenPriceError;
+                return new Error(`Token price error: ${tokenPriceError.Message}`);
+            };
+        };
 
-    onError(error: any): Error {
-        console.error(`Token price API error: ${error.response.status}, ${error.response.statusText}`);
-        return new Error(`Token price API error: ${error.response.status}, ${error.response.statusText}`);
+        return error;
     }
 }
 
