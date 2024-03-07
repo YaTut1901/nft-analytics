@@ -1,15 +1,12 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
 
 function MidBoard(): React.JSX.Element {
   const style = {
-    height: "25vh",
     width: "calc(33.3% - 2rem)"
   };
 
   return (
-    <div className="w-full flex gap-4 items-center"
-         style={{ height: "25vh" }}>
+    <div className="w-full h-1/3 flex gap-4 items-center">
         <div className="flex-grow p-4 h-full flex-shrink-0 flex-basis-0 bg-white rounded-l-3xl rounded-r-md shadow-lg"
              style={style}>
           {/* <Line data={schema} options={{ maintainAspectRatio: false }} /> */}

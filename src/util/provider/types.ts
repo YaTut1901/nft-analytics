@@ -21,11 +21,11 @@ export type RawMarketData = {
     data: number[];
 }
 
-export type RawCapVolumeData = {
-    timestamp: number[];
-    cap: number[];
-    volume: number[];
-}
+export type RawCapVolumeData = Array<{
+    timestamp: number;
+    cap: number;
+    volume: number;
+}>
 
 export type CapVolumeResponse = {
     x: number[];

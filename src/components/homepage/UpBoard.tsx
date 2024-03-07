@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import CapAndVolume from "./CapAndVolume";
 import TrendsOverview from "./TrendsOverview";
 import { useContext } from "react";
@@ -6,10 +6,6 @@ import { ModalContext } from "../../util/context/ModalContext";
 
 function UpBoard():React.JSX.Element {
   const { handleModalOpen, setModalContent } = useContext(ModalContext);
-
-  const style: CSSProperties = {
-    height: "35vh",
-  }
   
   function handleClick(component: React.JSX.Element | null = null) {
     setModalContent(
@@ -22,11 +18,10 @@ function UpBoard():React.JSX.Element {
   }
 
   return (
-    <div className="w-full bg-white flex items-center rounded-3xl shadow-lg"
-         style={style}>
+    <div className="w-full h-1/2 bg-white flex items-center rounded-3xl shadow-lg">
         <div className="p-4 w-1/3 h-full"
-             onClick={() => handleClick(<CapAndVolume />)}>
-          <CapAndVolume />
+             onClick={() => handleClick(<CapAndVolume chartStyle={{ cursor: "default" }} />)}>
+          <CapAndVolume chartStyle={{ cursor: "zoom-in" }} />
         </div>
         <div className="p-4 w-1/3">
           {/* <Line data={schema} options={{ maintainAspectRatio: false }} /> */}
