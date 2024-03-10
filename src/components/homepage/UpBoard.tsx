@@ -18,7 +18,7 @@ function UpBoard():React.JSX.Element {
   }
 
   return (
-    <div className="w-full h-1/2 bg-white flex items-center rounded-3xl shadow-lg">
+    <div className="w-full h-3/5 bg-white flex items-center rounded-3xl shadow-lg">
         <div className="p-4 w-1/3 h-full"
              onClick={() => handleClick(<CapAndVolume chartStyle={{ cursor: "default" }} />)}>
           <CapAndVolume chartStyle={{ cursor: "zoom-in" }} />

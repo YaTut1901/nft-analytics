@@ -5,6 +5,7 @@ import TrendsByVolumeProvider from "../../util/provider/ethereum/trends/TrendsBy
 import Trend from "./trends/Trend";
 import CapVolumeSwitch from "./trends/CapVolumeSwitch";
 import { TopCollections } from "../../util/provider/types";
+import ChartLoading from "./capandvolume/ChartLoading";
 
 function formatTrends(trends: TopCollections): React.JSX.Element {
   return <ul className="w-full h-full flex flex-col justify-between">
@@ -49,15 +50,16 @@ function TrendsOverview(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="p-4 flex flex-col items-center gap-3 bg-slate-200 rounded-r-3xl h-full"
+    <div className="relative p-4 flex flex-col items-center gap-3 bg-slate-200 rounded-r-3xl h-full"
          ref={ containerRef }>
       <div className="flex justify-between items-center w-full">
         <Link className="text-2xl font-bold text-slate-900"
-              to={`/trends/${trendsBy}`}>
+              to={`/trends`}>
           Top Collections
         </Link>
         <CapVolumeSwitch setTrendsBy={setTrendsBy} trendsBy={trendsBy}/>
       </div>
+      { loading && <ChartLoading loading={loading} /> }
       { !loading && formatTrends(trends.slice(0, (height - (padding * 2 + gap + header)) / trendHeight)) }
     </div>
   );

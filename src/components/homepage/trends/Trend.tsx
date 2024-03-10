@@ -22,7 +22,13 @@ function Trend(props: { trend: TopCollectionsByCapCollection | TopCollectionsByV
                         {props.trend.rank}
                     </div>
                     <div className="w-12 h-12">
-                        <img src={props.trend.collection_image} alt="collection" className="w-12 h-12 rounded-full"/>
+                        <img src={props.trend.collection_image} 
+                             onError={({currentTarget}) => 
+                               { currentTarget.onerror = null; 
+                                 currentTarget.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Crect width='50' height='50' fill='black'/%3E%3Ctext x='15' y='35' font-size='30' fill='white'%3E?%3C/text%3E%3C/svg%3E"; 
+                                 currentTarget.style.backgroundColor = 'black';}}
+                             alt="collection" 
+                             className="w-12 h-12 rounded-full"/>
                     </div>
                 </div>
                 <div className="w-3/4 relative">
